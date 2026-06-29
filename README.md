@@ -1,43 +1,32 @@
-# Mini Message Board
+# Inventory app
 
 ## Description:
 
-Mini message board is a simple message board app, created to understand the following areas in Node Js:
+A simple inventory management app for an imaginary store. It will help me better understand the following backend lessons: 
 
-- Native node modules
-- Express js
-- Routes
-- Controllers
-- EJS, and Views
-- App Hosting and Deployment
-- Working with Relational Database
+- Working with Relational Database, Postgres
 - Form Validation and Sanitization
 
 ## Features:
 
-- Homepage displays messages, with the date, and author of the message.
-- User is able to add a new message.
-- User is able to edit a message.
-- User is also able to delete a message.
 
 ## Tech Stack:
 
 - Node JS + Express JS
 - EJS, & HTML
 - CSS
-- Vanilla JavaScript
 - Postgres
 
   ## App Views
 
   ### Homepage
 
-  ![Homepage](https://github.com/Sorbari2016/mini-message/blob/main/public/images/mini-message-home.png)
+  ![Homepage]
 
-  ### Add New Messsage
+  ### 
 
-  ![Send A Mesesage](https://github.com/Sorbari2016/mini-message/blob/main/public/images/mini-message-new.png)
+  ![Send A Mesesage]
 
-  ### Edit Message
+  ### 
 
-  ![Edit A Message](https://github.com/Sorbari2016/mini-message/blob/main/public/images/mini-message-edit.png)
+  ![Edit A Message]
