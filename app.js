@@ -2,6 +2,9 @@ import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 import { router } from "./routes/router.js";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 
@@ -22,10 +25,10 @@ app.use((err, req, res, next) => {
   res.status(err.statusCode || 500).send(err.message);
 });
 
-const PORT = 3000;
-app.listen(PORT, (error) => {
+const port = process.env.PORT;
+app.listen(port, (error) => {
   if (error) {
     throw error;
   }
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running on port ${port}`);
 });
