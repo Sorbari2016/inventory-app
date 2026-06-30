@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS products (
     product_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     product_name VARCHAR(255) NOT NULL,
     description TEXT,
-    category_id INTEGER REFERENCES categories(category_id) ON DELETE SET NULL
+    category_id INTEGER REFERENCES categories(category_id) ON DELETE CASCADE
 );
 
 
