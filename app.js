@@ -25,6 +25,8 @@ app.use((err, req, res, next) => {
   res.status(err.statusCode || 500).send(err.message);
 });
 
+console.log(process.env.DB_PASS);
+
 const port = process.env.PORT;
 app.listen(port, (error) => {
   if (error) {
