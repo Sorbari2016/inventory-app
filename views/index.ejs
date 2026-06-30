@@ -1,11 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Document</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  </head>
-  <body>
-    <h1>Welcome to the hompage</h1>
-  </body>
+<head>
+    <title><%=title %></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Dashboard</h1>
+            <div class="actions-bar">
+                <a href="/categories/new" class="btn btn-primary">+ Add Category</a>
+                <a href="/products/new" class="btn btn-primary">+ Add Product</a>
+            </div>
+        </header>
+
+        <main class="grid">
+            <% if (categories.length === 0) { %>
+                <div class="card">
+                    <p class="no-data">No categories found. Start by adding one!</p>
+                </div>
+            <% } %>
+
+            <% categories.forEach(c => { %>
+                <div class="card">
+                    <div class="category-header">
+                        <h2 class="category-title"><%= c.name %></h2>
+                        <div class="actions-bar">
+                            <a href="/categories/<%= c.category_id %>/edit" class="btn btn-warning">Edit</a>
+                            <form action="/categories/<%= c.category_id %>/delete" method="POST" class="inline-form" onsubmit="return confirm('Delete this category and all its products?');">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <ul class="product-list">
+                        <% 
+                        const categoryProducts = products.filter(p => p.category_id === c.category_id); 
+                        %>
+                        <% if (categoryProducts.length === 0) { %>
+                            <li class="no-data" style="padding: 10px;">No products in this category.</li>
+                        <% } else { %>
+                            <% categoryProducts.forEach(p => { %>
+                                <li class="product-item">
+                                    <span class="product-name"><%= p.product_name %></span>
+                                    <div class="actions-bar">
+                                        <a href="/products/<%= p.product_id %>/edit" class="btn btn-warning">Edit</a>
+                                        <form action="/products/<%= p.product_id %>/delete?_method=DELETE" method="POST" class="inline-form">
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
+                                    </div>
+                                </li>
+                            <% }) %>
+                        <% } %>
+                    </ul>
+                </div>
+            <% }) %>
+        </main>
+    </div>
+
+</body>
 </html>

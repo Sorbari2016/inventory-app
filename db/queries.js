@@ -9,14 +9,14 @@ async function getAllCategories() {
 
 // Create method to get all products
 async function getAllProducts() {
-  const { rows } = await pool.query("SELECT product_name FROM products");
+  const { rows } = await pool.query("SELECT * FROM products");
   return rows;
 }
 
 // Create method to get all the products of a category
 async function getProductsByCategory(categoryName) {
   const { rows } = await pool.query(
-    `SELECT product_name
+    `SELECT *
     FROM products
     WHERE category_id = (
         SELECT category_id
@@ -56,3 +56,13 @@ async function deleteCategory(categoryId) {
 async function deleteProduct(productId) {
   await pool.query("DELETE FROM products WHERE product_id = $1", [productId]);
 }
+
+export {
+  getAllCategories,
+  getAllProducts,
+  deleteCategory,
+  deleteProduct,
+  getProductsByCategory,
+  insertCategory,
+  insertProduct,
+};
