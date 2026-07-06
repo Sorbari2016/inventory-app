@@ -1,7 +1,9 @@
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
-import { router } from "./routes/router.js";
+import { router } from "./routes/homeRouter.js";
+import { categoryRouter } from "./routes/categoryRouter.js";
+import { productRouter } from "./routes/productRouter.js";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -18,7 +20,10 @@ app.set("view engine", "ejs");
 
 app.use(express.static("public"));
 
+// Use Router
 app.use("/", router);
+app.use("/products", productRouter);
+app.use("/categories", categoryRouter);
 
 app.use((err, req, res, next) => {
   console.error(err);
