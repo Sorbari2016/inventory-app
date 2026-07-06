@@ -13,6 +13,14 @@ async function getAllProducts() {
   return rows;
 }
 
+async function getProductById(productId) {
+  const { rows } = await pool.query(
+    "SELECT * FROM products WHERE product_id = $1",
+    [productId],
+  );
+  return rows[0];
+}
+
 // Create method to get all the products of a category
 async function getProductsByCategory(categoryName) {
   const { rows } = await pool.query(
@@ -65,4 +73,5 @@ export {
   getProductsByCategory,
   insertCategory,
   insertProduct,
+  getProductById,
 };
