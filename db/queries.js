@@ -51,6 +51,27 @@ async function insertProduct(productName, description, categoryId) {
   );
 }
 
+// Create method to update product
+async function updateProduct(productId, productName, description, categoryId) {
+  await pool.query(
+    `
+    UPDATE products
+    SET product_name = $1, 
+        description = $2, 
+        category_id = $3
+    WHERE product_id = $4 `,
+    [productName, description, categoryId, productId],
+  );
+}
+
+// Create method to udpate category
+async function updateCategory(categoryId, name) {
+  await pool.query("UPDATE categories SET name = $1 WHERE category_id = $2", [
+    name,
+    categoryId,
+  ]);
+}
+
 // Create method to delete a category, when we delete a category, all its products should be deleted as well
 async function deleteCategory(categoryId) {
   await pool.query("DELETE FROM categories WHERE category_id = $1", [
@@ -68,8 +89,9 @@ export {
   getAllProducts,
   deleteCategory,
   deleteProduct,
-  getProductsByCategory,
   insertCategory,
   insertProduct,
   getProductById,
+  updateProduct,
+  updateCategory,
 };

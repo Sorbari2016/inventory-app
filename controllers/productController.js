@@ -1,8 +1,10 @@
 import {
   getAllCategories,
   getProductById,
-  insertCategory,
   insertProduct,
+  updateProduct,
+  deleteProduct,
+  getAllProducts,
 } from "../db/queries.js";
 import { validationResult, matchedData } from "express-validator";
 
@@ -27,7 +29,7 @@ async function getProductForm(req, res) {
   res.render("forms/product", {
     title: "Edit Product",
     formTitle: "Edit Product",
-    actionRoute: `/products/:${product.id}/edit`,
+    actionRoute: `/products/${product.product_id}/edit`,
     submitText: "Save Changes",
     categories: categories,
     product: product,
@@ -66,4 +68,46 @@ async function createProduct(req, res) {
   res.redirect("/");
 }
 
-export { getProductForm, createProduct };
+// Create controller to update a product
+async function reviseProduct(req, res) {
+  const productId = parseInt(req.params.productId);
+  console.log(productId);
+  const product = await getProductById(productId);
+
+  const categories = await getAllCategories();
+
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return res.render("forms/product", {
+      title: "Edit Product",
+      formTitle: "Edit Product",
+      actionRoute: `/products/${product.product_id}/edit`,
+      submitText: "Save Changes",
+      categories: categories,
+      product: product,
+    });
+  }
+
+  const { categoryName } = req.body;
+  const category = categories.find((c) => c.name === categoryName);
+  const categoryId = category.category_id;
+
+  const { productName, description } = matchedData(req);
+
+  const previousData = {
+    product_name: product.product_name,
+    description: product.description,
+  };
+
+  await updateProduct(
+    productId,
+    productName || previousData.product_name,
+    description || previousData.description,
+    categoryId,
+  );
+
+  res.redirect("/");
+}
+
+export { getProductForm, createProduct, reviseProduct };
