@@ -71,7 +71,6 @@ async function createProduct(req, res) {
 // Create controller to update a product
 async function reviseProduct(req, res) {
   const productId = parseInt(req.params.productId);
-  console.log(productId);
   const product = await getProductById(productId);
 
   const categories = await getAllCategories();

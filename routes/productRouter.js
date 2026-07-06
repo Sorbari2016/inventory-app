@@ -4,6 +4,7 @@ import {
   reviseProduct,
 } from "../controllers/productController.js";
 import { validateProduct } from "../validation/validate.js";
+
 import { Router } from "express";
 
 const productRouter = Router();

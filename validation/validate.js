@@ -15,7 +15,7 @@ const validateName = (fieldName, displayName) => {
 };
 
 const validataCategory = () => {
-  [validateName("categoryName", "Category name")];
+  return [validateName("categoryName", "Category name")];
 };
 
 const validateProduct = () => {
