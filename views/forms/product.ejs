@@ -34,7 +34,7 @@
                     <label for="description">Description</label>
                     <textarea id="description" name="description"><%= product.description %></textarea>
                 </div>
-
+                <div class="form-error"><%-include("../partials/errors") %></div>
                 <div class="actions-bar">
                     <a href="/" class="btn btn-secondary">Cancel</a>
                     <button type="submit" class="btn btn-primary"><%=submitText %></button>

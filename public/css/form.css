@@ -89,3 +89,8 @@
 .container h1 {
   text-align: center;
 }
+
+.error-list {
+  color: red;
+  font-size: 13px;
+}
