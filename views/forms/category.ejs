@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/index.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1><%= title %></h1>
+      </header>
+      <div class="card">
+        <form action="<%= actionRoute %>" method="POST">
+          <div class="form-group">
+            <label for="categoryName">Category Name</label>
+            <input
+              type="text"
+              id="categoryName"
+              name="categoryName"
+              value="<%= typeof category !== 'undefined' ? category.name : '' %>"
+              placeholder="e.g., Bathroom accessories, Cabinetry"
+              required
+            />
+          </div>
+
+          <div class="actions-bar">
+            <a href="/" class="btn btn-secondary">Cancel</a>
+            <button type="submit" class="btn btn-primary">Save Category</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
