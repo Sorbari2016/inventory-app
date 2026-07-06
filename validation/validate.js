@@ -20,7 +20,7 @@ const validataCategory = () => {
 
 const validateProduct = () => {
   return [
-    validateName("ProductName", "Product name"),
+    validateName("productName", "Product name"),
     body("description")
       .trim()
       .isLength({ max: 200 })

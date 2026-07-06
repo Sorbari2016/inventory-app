@@ -1,4 +1,10 @@
-import { getAllCategories, getProductById } from "../db/queries.js";
+import {
+  getAllCategories,
+  getProductById,
+  insertCategory,
+  insertProduct,
+} from "../db/queries.js";
+import { validationResult, matchedData } from "express-validator";
 
 async function getProductForm(req, res) {
   const categories = await getAllCategories();
@@ -28,4 +34,36 @@ async function getProductForm(req, res) {
   });
 }
 
-export { getProductForm };
+// Create a controller to create a new product
+async function createProduct(req, res) {
+  const categories = await getAllCategories();
+
+  const errors = validationResult(req);
+  console.log(errors);
+
+  if (!errors.isEmpty()) {
+    return res.status(400).render("forms/product", {
+      title: "New Product",
+      formTitle: "Add New Product",
+      actionRoute: "/products/new",
+      submitText: "Create Product",
+      categories: categories,
+      product: {},
+      errors: errors.array(),
+    });
+  }
+
+  // Get user selected option, which requires NO validation
+  const { categoryName } = req.body;
+  const category = categories.find((c) => c.name === categoryName);
+  const categoryId = category.category_id;
+
+  // Get datatthat require validation
+  const { productName, description } = matchedData(req);
+
+  await insertProduct(productName, description, categoryId);
+
+  res.redirect("/");
+}
+
+export { getProductForm, createProduct };

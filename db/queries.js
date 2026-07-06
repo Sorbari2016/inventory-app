@@ -42,14 +42,12 @@ async function insertCategory(category) {
 }
 
 // Create a method add a new product
-async function insertProduct(categoryName, productName, description) {
+async function insertProduct(productName, description, categoryId) {
   await pool.query(
     `INSERT INTO products (product_name, description, category_id)
-     SELECT $1, $2, category_id 
-     FROM categories
-     WHERE name = $3
-    `,
-    [productName, description, categoryName],
+     VALUES($1, $2, $3)    
+     `,
+    [productName, description, categoryId],
   );
 }
 

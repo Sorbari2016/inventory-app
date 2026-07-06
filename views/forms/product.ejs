@@ -21,9 +21,9 @@
 
                 <div class="form-group">
                     <label for="categoryId">Category</label>
-                    <select id="categoryId" name="categoryId" required>
+                    <select id="categoryId" name="categoryName" required>
                         <% categories.forEach(category => { %>
-                            <option value="<%= category.id %>" <%= product.categoryId === category.id ? 'selected' : '' %>>
+                            <option value="<%= category.name %>" <%= product.category_id === category.category_id ? 'selected' : '' %>>
                                 <%= category.name %>
                             </option>
                         <% }) %>
@@ -37,7 +37,7 @@
 
                 <div class="actions-bar">
                     <a href="/" class="btn btn-secondary">Cancel</a>
-                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <button type="submit" class="btn btn-primary"><%=submitText %></button>
                 </div>
             </form>
         </div>
