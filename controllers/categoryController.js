@@ -2,6 +2,7 @@ import {
   getAllCategories,
   insertCategory,
   updateCategory,
+  deleteCategory,
 } from "../db/queries.js";
 import { validationResult, matchedData } from "express-validator";
 
@@ -85,4 +86,13 @@ async function reviseCategory(req, res) {
   res.redirect("/");
 }
 
-export { getCategoryForm, createCategory, reviseCategory };
+// Create method to delete a category
+async function removeCategory(req, res) {
+  const categoryId = parseInt(req.params.categoryId);
+
+  await deleteCategory(categoryId);
+
+  res.redirect("/");
+}
+
+export { getCategoryForm, createCategory, reviseCategory, removeCategory };

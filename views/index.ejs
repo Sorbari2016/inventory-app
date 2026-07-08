@@ -47,7 +47,7 @@
                                     <span class="product-name"><%= p.product_name %></span>
                                     <div class="actions-bar">
                                         <a href="/products/<%= p.product_id %>/edit" class="btn btn-warning">Edit</a>
-                                        <form action="/products/<%= p.product_id %>/delete?_method=DELETE" method="POST" class="inline-form">
+                                        <form action="/products/<%= p.product_id %>/delete" method="POST" class="inline-form">
                                             <button type="submit" class="btn btn-danger">Delete</button>
                                         </form>
                                     </div>

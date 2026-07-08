@@ -109,4 +109,13 @@ async function reviseProduct(req, res) {
   res.redirect("/");
 }
 
-export { getProductForm, createProduct, reviseProduct };
+// When user try to delete, they will need a secret code to delete
+async function removeProduct(req, res) {
+  const productId = parseInt(req.params.productId);
+
+  await deleteProduct(productId);
+
+  res.redirect("/");
+}
+
+export { getProductForm, createProduct, reviseProduct, removeProduct };
