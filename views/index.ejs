@@ -29,7 +29,7 @@
                         <h2 class="category-title"><%= c.name %></h2>
                         <div class="actions-bar">
                             <a href="/categories/<%= c.category_id %>/edit" class="btn btn-warning">Edit</a>
-                            <form action="/categories/<%= c.category_id %>/delete" method="POST" class="inline-form" onsubmit="return confirm('Delete this category and all its products?');">
+                            <form action="/categories/<%= c.category_id %>/delete" method="POST" class="inline-form">
                                 <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
                         </div>
@@ -60,5 +60,6 @@
         </main>
     </div>
 
+    <script src="/script/javaScript.js"></script>
 </body>
 </html>
