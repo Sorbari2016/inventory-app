@@ -1,3 +1,5 @@
+/* css rules for homepage */
+
 :root {
   --primary: #4f46e5;
   --primary-hover: #4338ca;
@@ -10,29 +12,37 @@
   --text: #1f2937;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: var(--bg);
   color: var(--text);
   margin: 0;
-  padding: 20px;
+  padding: 12px;
 }
 
 .container {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
 header {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
   padding-bottom: 20px;
   border-bottom: 2px solid #e5e7eb;
 }
 
-/* Base Button styling */
+header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
 .btn {
   border: none;
   border-radius: 6px;
@@ -42,24 +52,25 @@ header {
   text-decoration: none;
   display: inline-block;
   text-align: center;
+  white-space: nowrap;
 }
 
-/* Top Action Buttons (Add Category / Add Product) */
 .btn-primary {
   padding: 10px 16px;
   background-color: var(--primary);
   color: white;
-  font-size: 1rem;
+  font-size: 0.95rem;
+  flex: 1;
 }
+
 .btn-primary:hover {
   background-color: var(--primary-hover);
 }
 
-/* Modified Action Buttons (Smaller for Edit/Delete) */
 .btn-warning {
   background-color: var(--warning);
   color: white;
-  padding: 4px 10px;
+  padding: 6px 12px;
   font-size: 0.75rem;
 }
 .btn-warning:hover {
@@ -69,7 +80,7 @@ header {
 .btn-danger {
   background-color: var(--danger);
   color: white;
-  padding: 4px 10px;
+  padding: 6px 12px;
   font-size: 0.75rem;
 }
 .btn-danger:hover {
@@ -78,28 +89,30 @@ header {
 
 .actions-bar {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
   align-items: center;
+  width: 100%;
 }
 
 .grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 24px;
+  gap: 16px;
 }
 
 .card {
   background: var(--card-bg);
   border-radius: 8px;
-  padding: 20px;
+  padding: 16px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  height: fit-content;
 }
 
-/* Category header layout - stacks elements vertically */
 .category-block {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 10px;
   border-bottom: 1px solid #f3f4f6;
   padding-bottom: 12px;
   margin-bottom: 16px;
@@ -107,7 +120,7 @@ header {
 
 .category-title {
   margin: 0;
-  font-size: 1.4rem;
+  font-size: 1.25rem;
   color: var(--primary);
 }
 
@@ -121,7 +134,8 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 12px;
+  gap: 12px;
+  padding: 10px 12px;
   background: #f9fafb;
   margin-bottom: 8px;
   border-radius: 6px;
@@ -130,15 +144,53 @@ header {
 
 .product-name {
   font-weight: 500;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
+  word-break: break-word;
+}
+
+.product-item .actions-bar {
+  width: auto;
 }
 
 .no-data {
   color: #9ca3af;
   font-style: italic;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 .inline-form {
   display: inline;
+}
+
+@media (min-width: 640px) {
+  body {
+    padding: 24px;
+  }
+
+  header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  header h1 {
+    font-size: 1.75rem;
+  }
+
+  .btn-primary {
+    flex: none;
+  }
+
+  header .actions-bar {
+    width: auto;
+  }
+
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 24px;
+  }
+
+  .card {
+    padding: 24px;
+  }
 }
